@@ -1,0 +1,7 @@
+[
+    { "caption": "Random:int", "command": "random_int_window" },
+    { "caption": "Random:float", "command": "random_float_window" },
+    { "caption": "Random:letters", "command": "random_letter" },
+    { "caption": "Random:letters and numbers", "command": "random_letter_and_number" },
+    { "caption": "Random:word", "command": "random_word" }
+]
