@@ -1,7 +1,11 @@
-import sublime, sublime_plugin, random, string
+import sublime, sublime_plugin, random, string, os
 
-# with open('words') as f:
-#     words = f.read().splitlines()
+
+word_file = '%s/words.txt' % os.path.dirname(os.path.realpath(__file__))
+
+
+with open(word_file) as f:
+    words = f.read().splitlines()
 
 '''
 Base class for the Random generator. Extends the WindowCommand and adds helper methods
@@ -104,16 +108,14 @@ class RandomLetterAndNumberCommand(RandomText):
     def run(self, view, **kwargs):
         self.insert(view, self.generate_letters_and_numbers)
 
-# class RandomWordCommand(RandomText):
+class RandomWordCommand(RandomText):
 
-#     def generate_word(self):
-#         return random.choice(words)
-
-
-#     def run(self, view, **kwargs):
-#         self.insert(view, self.generate_word)
+    def generate_word(self):
+        return random.choice(words)
 
 
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_word)
 
 '''
 END Text commands
