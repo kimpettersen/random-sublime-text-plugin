@@ -1,7 +1,9 @@
 random-sublime-text-plugin
 ==========================
 
-Plugin for sublime text to generate random, ints, floats, strings and words
+Plugin for sublime text to generate random, ints, floats, strings and words.
+
+It works in Sublime Text 2 *and* ST3
 
 
 Usage
