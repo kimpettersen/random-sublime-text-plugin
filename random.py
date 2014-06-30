@@ -1,12 +1,5 @@
 import sublime, sublime_plugin, random, string, os
 
-
-word_file = '%s/words.txt' % os.path.dirname(os.path.realpath(__file__))
-
-
-with open(word_file) as f:
-    words = f.read().splitlines()
-
 '''
 Base class for the Random generator. Extends the WindowCommand and adds helper methods
 '''
@@ -111,6 +104,11 @@ class RandomLetterAndNumberCommand(RandomText):
 class RandomWordCommand(RandomText):
 
     def generate_word(self):
+        words = []
+        word_file = os.path.join(sublime.packages_path(), "Random Everything", "words.txt")
+        with open(word_file) as f:
+            words = f.read().splitlines()
+
         return random.choice(words)
 
 
