@@ -31,7 +31,7 @@ class RandomText(sublime_plugin.TextCommand):
 
     def get_data_file(self, filename):
         words = []
-        word_file = os.path.join(sublime.packages_path(), "Random Everything", filename)
+        word_file = os.path.join(sublime.packages_path(), "random-sublime-text-plugin", filename)
         with open(word_file) as f:
             words = f.read().splitlines()
         return words
