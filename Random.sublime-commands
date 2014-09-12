@@ -3,5 +3,10 @@
     { "caption": "Random:float", "command": "random_float_window" },
     { "caption": "Random:letters", "command": "random_letter" },
     { "caption": "Random:letters and numbers", "command": "random_letter_and_number" },
-    { "caption": "Random:word", "command": "random_word" }
+    { "caption": "Random:word", "command": "random_word" },
+    { "caption": "Random:text", "command": "random_text" },
+    { "caption": "Random:first_name", "command": "random_first_name" },
+    { "caption": "Random:last_name", "command": "random_last_name" },
+    { "caption": "Random:full_name", "command": "random_full_name" },
+    { "caption": "Random:url", "command": "random_url" }
 ]

@@ -29,6 +29,22 @@ class RandomText(sublime_plugin.TextCommand):
             output = generator()
             self.view.insert(view, region.begin(), output)
 
+    def get_data_file(self, filename):
+        words = []
+        word_file = os.path.join(sublime.packages_path(), "Random Everything", filename)
+        with open(word_file) as f:
+            words = f.read().splitlines()
+        return words
+
+    def get_words(self):
+        return self.get_data_file("words.txt")
+
+    def get_first_names(self):
+        return self.get_data_file("first_names.txt")
+
+    def get_last_names(self):
+        return self.get_data_file("last_names.txt")
+
 '''
 Window commands
 '''
@@ -104,16 +120,68 @@ class RandomLetterAndNumberCommand(RandomText):
 class RandomWordCommand(RandomText):
 
     def generate_word(self):
-        words = []
-        word_file = os.path.join(sublime.packages_path(), "Random Everything", "words.txt")
-        with open(word_file) as f:
-            words = f.read().splitlines()
-
+        words = self.get_words()
         return random.choice(words)
-
 
     def run(self, view, **kwargs):
         self.insert(view, self.generate_word)
+
+
+class RandomTextCommand(RandomText):
+
+    def generate_text(self):
+        words = self.get_words()
+        return " ".join([random.choice(words) for i in range(0,24)])
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_text)
+
+
+class RandomFirstNameCommand(RandomText):
+
+    def generate_first_name(self):
+        first_names = self.get_first_names()
+        return random.choice(first_names)
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_first_name)
+
+
+class RandomLastNameCommand(RandomText):
+
+    def generate_last_name(self):
+        last_names  = self.get_last_names()
+        return random.choice(last_names)
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_last_name)
+
+
+class RandomFullNameCommand(RandomText):
+
+    def generate_full_name(self):
+        first_names = self.get_first_names()
+        last_names  = self.get_last_names()
+        return "%s %s" % (random.choice(first_names), random.choice(last_names))
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_full_name)
+
+
+class RandomUrlCommand(RandomText):
+
+    def generate_url(self):
+        r_words  = [random.choice(self.get_words()) for i in range(0,7)]
+        scheme   = random.choice(['http', 'https'])
+        domain   = r_words[0]
+        path     = "/".join(r_words[1:3])
+        query    = "a=%s&b=%s" % (r_words[4], r_words[5])
+        fragment = r_words[6]
+        url      = "%s://%s.com/%s?%s#%s" % (scheme, domain, path, query, fragment)
+        return url.lower()
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_url)
 
 '''
 END Text commands
