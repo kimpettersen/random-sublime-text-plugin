@@ -1,4 +1,4 @@
-import sublime, sublime_plugin, random, string, os
+import sublime, sublime_plugin, random, string, os, uuid
 
 '''
 Base class for the Random generator. Extends the WindowCommand and adds helper methods
@@ -131,6 +131,15 @@ class RandomTextCommand(RandomText):
 
     def run(self, view, **kwargs):
         self.insert(view, self.generate_text)
+
+class RandomUuidCommand(RandomText):
+
+    def generate_uuid(self):
+        return str(uuid.uuid4())
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_uuid)
+
 
 class RandomFirstNameCommand(RandomText):
 
