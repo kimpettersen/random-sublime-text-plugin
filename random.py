@@ -199,6 +199,15 @@ class RandomEmailCommand(RandomText):
     def run(self, view, **kwargs):
         self.insert(view, self.generate_email)
 
+class RandomHexColorCommand(RandomText):
+
+    def generate_hex_color(self):
+        #  Code based on: http://stackoverflow.com/questions/13998901/generating-a-random-hex-color-in-python
+        return "#%06x" % random.randint(0,0xFFFFFF)
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_hex_color)
+
 '''
 END Text commands
 '''

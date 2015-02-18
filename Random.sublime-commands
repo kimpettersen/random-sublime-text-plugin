@@ -11,5 +11,6 @@
     { "caption": "Random:Full Name", "command": "random_full_name" },
     { "caption": "Random:E-mail", "command": "random_email" },
     { "caption": "Random:Url", "command": "random_url" }
+    { "caption": "Random:Hex Color", "command": "random_hex_color" }
 ]
 
