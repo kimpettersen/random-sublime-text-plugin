@@ -188,11 +188,12 @@ class RandomUrlCommand(RandomText):
 class RandomEmailCommand(RandomText):
 
     def generate_email(self):
+        self.plugin_settings = sublime.load_settings("Random.sublime-settings")
         u_name = self.get_words()
         u_name = random.choice(u_name)
-        domain = self.get_words()
+        domain = self.plugin_settings.get("random_email_main_domain_override",self.get_words())
         domain = random.choice(domain)
-        top_domain = random.choice(['com', 'net', 'co.uk', 'org', 'edu'])
+        top_domain = random.choice(self.plugin_settings.get("random_email_top_level_domain_override","com")) 
         email = '%s@%s.%s' %(u_name, domain, top_domain)
         return email.lower()
 
