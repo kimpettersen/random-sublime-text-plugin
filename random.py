@@ -1,5 +1,7 @@
 import sublime, sublime_plugin, random, string, os, uuid
 
+PACKAGES_PATH = os.path.dirname(os.path.realpath(__file__))
+
 '''
 Base class for the Random generator. Extends the WindowCommand and adds helper methods
 '''
@@ -31,7 +33,7 @@ class RandomText(sublime_plugin.TextCommand):
 
     def get_data_file(self, filename):
         words = []
-        word_file = os.path.join(sublime.packages_path(), 'Random Everything/assets', filename)
+        word_file = os.path.join(PACKAGES_PATH + '/assets', filename)
         with open(word_file) as f:
             words = f.read().splitlines()
         return words
@@ -193,7 +195,7 @@ class RandomEmailCommand(RandomText):
         u_name = random.choice(u_name)
         domain = self.plugin_settings.get("random_email_main_domain_override",self.get_words())
         domain = random.choice(domain)
-        top_domain = random.choice(self.plugin_settings.get("random_email_top_level_domain_override","com")) 
+        top_domain = random.choice(self.plugin_settings.get("random_email_top_level_domain_override","com"))
         email = '%s@%s.%s' %(u_name, domain, top_domain)
         return email.lower()
 
