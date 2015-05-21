@@ -13,7 +13,7 @@ Example
 Usage
 =====
 
-This plugin can only be accessed through the *cmd/ctrl + shift + p* command.
+This plugin can only be accessed through the <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> command.
 
 Type *random* and you get the following choices:
 
