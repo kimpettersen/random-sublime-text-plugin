@@ -29,3 +29,11 @@ Type *random* and you get the following choices:
 * Random:E-mail - picks a random E-mail address
 * Random:Url - generates a URL using random words from /usr/share/dict/words
 * Random:Hex Color - generates a random hex color formatted "#abc123"
+
+Overridable Settings
+====================
+
+**Random: E-Mail**
+* random_email_top_level_domain_override - Allows overriding available email TLDs e.g. ["com","org"]. Defaults are ["com", "net", "co.uk", "org", "edu"]
+* random_email_main_domain_override - Allows overriding of available email main domains e.g. ["gmail","yahoo", "hotmail"]. If not specified, a random string will be used.
+
