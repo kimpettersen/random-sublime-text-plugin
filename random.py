@@ -1,6 +1,14 @@
-import sublime, sublime_plugin, random, string, os, uuid
+import sublime
+import sublime_plugin
+import random
+import datetime
+import string
+import os
+import uuid
 
 PACKAGES_PATH = os.path.dirname(os.path.realpath(__file__))
+
+plugin_settings = sublime.load_settings('Random.sublime-settings')
 
 '''
 Base class for the Random generator. Extends the WindowCommand and adds helper methods
@@ -190,12 +198,11 @@ class RandomUrlCommand(RandomText):
 class RandomEmailCommand(RandomText):
 
     def generate_email(self):
-        self.plugin_settings = sublime.load_settings("Random.sublime-settings")
         u_name = self.get_words()
         u_name = random.choice(u_name)
-        domain = self.plugin_settings.get("random_email_main_domain_override",self.get_words())
+        domain = plugin_settings.get('random_email_main_domain_override',self.get_words())
         domain = random.choice(domain)
-        top_domain = random.choice(self.plugin_settings.get("random_email_top_level_domain_override","com"))
+        top_domain = random.choice(plugin_settings.get('random_email_top_level_domain_override','com'))
         email = '%s@%s.%s' %(u_name, domain, top_domain)
         return email.lower()
 
@@ -205,11 +212,25 @@ class RandomEmailCommand(RandomText):
 class RandomHexColorCommand(RandomText):
 
     def generate_hex_color(self):
-        #  Code based on: http://stackoverflow.com/questions/13998901/generating-a-random-hex-color-in-python
-        return "#%06x" % random.randint(0,0xFFFFFF)
+        return '#%06x' % random.randint(0,0xFFFFFF)
 
     def run(self, view, **kwargs):
         self.insert(view, self.generate_hex_color)
+
+class RandomDateCommand(RandomText):
+
+    def generate_random_date(self):
+        max_year = plugin_settings.get('max_year', (datetime.datetime.now().year,))[0]
+        min_year = plugin_settings.get('min_year', (2010,))[0]
+
+        year = random.randint(min_year, max_year)
+        month = random.randint(1, 12)
+        day = random.randint(1, 28)
+        date = datetime.date(year, month, day)
+        return date.isoformat()
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_random_date)
 
 '''
 END Text commands
