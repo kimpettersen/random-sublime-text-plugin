@@ -204,7 +204,8 @@ class RandomEmailCommand(RandomText):
         u_name = random.choice(u_name)
         domain = settings.get('random_email_main_domain_override',self.get_words())
         domain = random.choice(domain)
-        top_domain = random.choice(settings.get('random_email_top_level_domain_override','com'))
+        seq = settings.get('random_email_top_level_domain_override',['com', 'net', 'edu'])
+        top_domain = random.choice(seq)
         email = '%s@%s.%s' %(u_name, domain, top_domain)
         return email.lower()
 
