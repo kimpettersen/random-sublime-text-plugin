@@ -3,6 +3,7 @@
     { "caption": "Random:Float", "command": "random_float_window" },
     { "caption": "Random:Letters", "command": "random_letter" },
     { "caption": "Random:Letters and numbers", "command": "random_letter_and_number" },
+    { "caption": "Random:Date", "command": "random_date" },
     { "caption": "Random:Word", "command": "random_word" },
     { "caption": "Random:Text", "command": "random_text" },
     { "caption": "Random:UUID", "command": "random_uuid" },
@@ -13,4 +14,3 @@
     { "caption": "Random:Url", "command": "random_url" },
     { "caption": "Random:Hex Color", "command": "random_hex_color" }
 ]
-
