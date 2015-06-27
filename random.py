@@ -8,7 +8,8 @@ import uuid
 
 PACKAGES_PATH = os.path.dirname(os.path.realpath(__file__))
 
-plugin_settings = sublime.load_settings('Random.sublime-settings')
+def get_settings():
+    return sublime.load_settings('Random.sublime-settings')
 
 '''
 Base class for the Random generator. Extends the WindowCommand and adds helper methods
@@ -198,11 +199,12 @@ class RandomUrlCommand(RandomText):
 class RandomEmailCommand(RandomText):
 
     def generate_email(self):
+        settings = get_settings()
         u_name = self.get_words()
         u_name = random.choice(u_name)
-        domain = plugin_settings.get('random_email_main_domain_override',self.get_words())
+        domain = settings.get('random_email_main_domain_override',self.get_words())
         domain = random.choice(domain)
-        top_domain = random.choice(plugin_settings.get('random_email_top_level_domain_override','com'))
+        top_domain = random.choice(settings.get('random_email_top_level_domain_override','com'))
         email = '%s@%s.%s' %(u_name, domain, top_domain)
         return email.lower()
 
@@ -220,8 +222,8 @@ class RandomHexColorCommand(RandomText):
 class RandomDateCommand(RandomText):
 
     def generate_random_date(self):
-        max_year = plugin_settings.get('max_year', (datetime.datetime.now().year,))[0]
-        min_year = plugin_settings.get('min_year', (2010,))[0]
+        max_year = get_settings().get('max_year', (datetime.datetime.now().year,))[0]
+        min_year = get_settings().get('min_year', (2010,))[0]
 
         year = random.randint(min_year, max_year)
         month = random.randint(1, 12)
