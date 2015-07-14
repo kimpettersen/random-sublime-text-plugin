@@ -30,6 +30,7 @@ Type *random* and you get the following choices:
 * Random:E-mail - picks a random E-mail address
 * Random:Url - generates a URL using random words from /usr/share/dict/words
 * Random:Hex Color - generates a random hex color formatted "#abc123"
+* Random:IPv4 Address - generates a random ipv4 ip address
 
 Overridable Settings
 ====================
