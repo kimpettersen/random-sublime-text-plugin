@@ -235,11 +235,11 @@ class RandomDateCommand(RandomText):
     def run(self, view, **kwargs):
         self.insert(view, self.generate_random_date)
 
-class RandomIPv4AddressCommand(RandomText):
+class RandomIpv4AddressCommand(RandomText):
     def generate_ipv4_address(self):
         return "%s.%s.%s.%s" % (random.randint(0,255), random.randint(0,255), random.randint(0,255), random.randint(0,255))
 
-    def run(self):
+    def run(self, view, **kwargs):
         self.insert(view, self.generate_ipv4_address)
 
 '''
