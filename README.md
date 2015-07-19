@@ -31,6 +31,7 @@ Type *random* and you get the following choices:
 * Random:Url - generates a URL using random words from /usr/share/dict/words
 * Random:Hex Color - generates a random hex color formatted "#abc123"
 * Random:IPv4 Address - generates a random ipv4 ip address
+* Random:IPV6 Address - generates a random ivp6 ip address
 
 Overridable Settings
 ====================
