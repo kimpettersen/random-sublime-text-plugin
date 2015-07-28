@@ -242,6 +242,23 @@ class RandomIpv4AddressCommand(RandomText):
     def run(self, view, **kwargs):
         self.insert(view, self.generate_ipv4_address)
 
+class RandomIpv6AddressCommand(RandomText):
+    def generate_hexbyte(self):
+        choice = "0123456789ABCDEF"
+        return "%s%s" % (random.choice(choice), random.choice(choice))
+    
+    def generate_ipv6_address(self):
+        address = ""
+        for x in range(0,8):
+            address += self.generate_hexbyte()
+            address += self.generate_hexbyte()
+            if x < 7:
+                address += ":"
+        return address
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_ipv6_address)
+
 '''
 END Text commands
 '''

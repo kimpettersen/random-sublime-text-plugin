@@ -13,5 +13,6 @@
     { "caption": "Random:E-mail", "command": "random_email" },
     { "caption": "Random:Url", "command": "random_url" },
     { "caption": "Random:Hex Color", "command": "random_hex_color" },
-    { "caption": "Random:IPv4 Address", "command": "random_ipv4_address" }
+    { "caption": "Random:IPv4 Address", "command": "random_ipv4_address" },
+    { "caption": "Random:IPv6 Address", "command": "random_ipv6_address" }
 ]
