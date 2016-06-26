@@ -56,6 +56,8 @@ class RandomText(sublime_plugin.TextCommand):
     def get_last_names(self):
         return self.get_data_file('last_names.txt')
 
+    def get_countries(self):
+        return self.get_data_file('countries.txt')
 '''
 Window commands
 '''
@@ -259,6 +261,15 @@ class RandomIpv6AddressCommand(RandomText):
     def run(self, view, **kwargs):
         self.insert(view, self.generate_ipv6_address)
 
+class RandomCountryCommand(RandomText):
+
+    def generate_country(self):
+        countries = self.get_countries()
+        return random.choice(countries)
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_country)
+		
 '''
 END Text commands
 '''
