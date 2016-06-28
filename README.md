@@ -21,6 +21,7 @@ Type *random* and you get the following choices:
 * Random:Float - requires a range from a-b separated with a: *-*. Default: 1-100
 * Random:Letters - generatates a random string of lower and upper -case letters with a length between 3 and 17
 * Random:Letters and numbers - generatates a random string of lower and upper -case letters and numbers with a length between 3 and 17
+* Random:Country - picks a random country
 * Random:Word - picks a random word from /usr/share/dict/words
 * Random:Text - picks 24 random words from /usr/share/dict/words
 * Random:Date - picks a random ISO-8601 Date
