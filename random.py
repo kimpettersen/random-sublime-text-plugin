@@ -23,6 +23,12 @@ class RandomWindow(sublime_plugin.WindowCommand):
         """
         return '1,100'
 
+    def default_length(self):
+        """
+        This should be persisted somehow
+        """
+        return '16'
+
     def get_range(self, input_text):
         try:
             input_text = input_text.replace(' ', '')
@@ -37,6 +43,18 @@ class RandomWindow(sublime_plugin.WindowCommand):
         except Exception as e:
             logging.exception(e)
             sublime.error_message('Must be two comma separated integers')
+
+    def get_length(self, input_text):
+        try:
+            length = int(input_text)
+
+            if length < 1:
+                raise ValueError('Invalid length. Must be at least 1')
+
+            self.insert({'length': length})
+        except Exception as e:
+            logging.exception(e)
+            sublime.error_message('Must be an integer')
 
     def insert(self, kwargs):
         view = self.window.active_view()
@@ -85,6 +103,16 @@ class RandomFloatWindowCommand(RandomWindow):
         self.text_command = 'random_float'
         self.window.show_input_panel('Random float from-to',self.default_range(), self.get_range, None, None)
 
+class RandomLetterWindowCommand(RandomWindow):
+    def run(self):
+        self.text_command = 'random_letter'
+        self.window.show_input_panel('Random letters',self.default_length(), self.get_length, None, None)
+
+class RandomLetterAndNumberWindowCommand(RandomWindow):
+    def run(self):
+        self.text_command = 'random_letter_and_number'
+        self.window.show_input_panel('Random letters and numbers',self.default_length(), self.get_length, None, None)
+
 """
 END Window commands
 """
@@ -117,27 +145,27 @@ class RandomFloatCommand(RandomText):
 class RandomLetterCommand(RandomText):
 
     def generate_letters(self):
-        upper_range = r.randint(3, 20)
         output = ''
-        for letter in range(0, upper_range):
+        for letter in range(0, self.length):
             output += r.choice(string.ascii_letters)
 
         return output
 
     def run(self, view, **kwargs):
+        self.length = kwargs['length']
         self.insert(view, self.generate_letters)
 
 class RandomLetterAndNumberCommand(RandomText):
 
     def generate_letters_and_numbers(self):
-        upper_range = r.randint(3, 20)
         output = ''
-        for letter in range(0, upper_range):
+        for letter in range(0, self.length):
             output += r.choice(string.ascii_letters + string.digits)
 
         return output
 
     def run(self, view, **kwargs):
+        self.length = kwargs['length']
         self.insert(view, self.generate_letters_and_numbers)
 
 class RandomWordCommand(RandomText):
