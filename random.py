@@ -250,6 +250,18 @@ class RandomDateCommand(RandomText):
     def run(self, view, **kwargs):
         self.insert(view, self.generate_random_date)
 
+class RandomTimeCommand(RandomText):
+
+    def generate_random_time(self):
+        hour = r.randint(0, 23)
+        minute = r.randint(0, 59)
+        second = r.randint(0, 59)
+        time = datetime.time(hour, minute, second)
+        return time.isoformat()
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_random_time)
+
 class RandomIpv4AddressCommand(RandomText):
     def generate_ipv4_address(self):
         return "%s.%s.%s.%s" % (r.randint(0,255), r.randint(0,255), r.randint(0,255), r.randint(0,255))
