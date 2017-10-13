@@ -262,6 +262,26 @@ class RandomTimeCommand(RandomText):
     def run(self, view, **kwargs):
         self.insert(view, self.generate_random_time)
 
+class RandomDatetimeRfc3339Command(RandomText):
+
+    def generate_random_datetime_rfc3339(self):
+        max_year = get_settings().get('max_year', (datetime.datetime.now().year,))[0]
+        min_year = get_settings().get('min_year', (2010,))[0]
+
+        year = r.randint(min_year, max_year)
+        month = r.randint(1, 12)
+        day = r.randint(1, 28)
+        date = datetime.date(year, month, day)
+        hour = r.randint(0, 23)
+        minute = r.randint(0, 59)
+        second = r.randint(0, 59)
+        time = datetime.time(hour, minute, second)
+        timezone = r.randint(0, 24) - 12
+        return "%sT%s%+02d" % (date.isoformat(), time.isoformat(), timezone)
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_random_datetime_rfc3339)
+
 class RandomIpv4AddressCommand(RandomText):
     def generate_ipv4_address(self):
         return "%s.%s.%s.%s" % (r.randint(0,255), r.randint(0,255), r.randint(0,255), r.randint(0,255))
