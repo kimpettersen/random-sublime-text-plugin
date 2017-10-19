@@ -4,6 +4,8 @@
     { "caption": "Random:Letters", "command": "random_letter" },
     { "caption": "Random:Letters and numbers", "command": "random_letter_and_number" },
     { "caption": "Random:Date", "command": "random_date" },
+    { "caption": "Random:DateTimeRFC3339", "command": "random_datetime_rfc3339" },
+    { "caption": "Random:Time", "command": "random_time" },
     { "caption": "Random:Country", "command": "random_country" },
     { "caption": "Random:Word", "command": "random_word" },
     { "caption": "Random:Text", "command": "random_text" },

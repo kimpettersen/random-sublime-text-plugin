@@ -238,10 +238,7 @@ class RandomHexColorCommand(RandomText):
 class RandomDateCommand(RandomText):
 
     def generate_random_date(self):
-        max_year = get_settings().get('max_year', (datetime.datetime.now().year,))[0]
-        min_year = get_settings().get('min_year', (2010,))[0]
-
-        year = r.randint(min_year, max_year)
+        year = r.randint(datetime.datetime.now().year - 10, datetime.datetime.now().year + 10)
         month = r.randint(1, 12)
         day = r.randint(1, 28)
         date = datetime.date(year, month, day)
@@ -249,6 +246,37 @@ class RandomDateCommand(RandomText):
 
     def run(self, view, **kwargs):
         self.insert(view, self.generate_random_date)
+
+class RandomTimeCommand(RandomText):
+
+    def generate_random_time(self):
+        hour = r.randint(0, 23)
+        minute = r.randint(0, 59)
+        second = r.randint(0, 59)
+        time = datetime.time(hour, minute, second)
+        return time.isoformat()
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_random_time)
+
+class RandomDatetimeRfc3339Command(RandomText):
+
+    def generate_random_datetime_rfc3339(self):
+        year = r.randint(datetime.datetime.now().year - 10, datetime.datetime.now().year + 10)
+        month = r.randint(1, 12)
+        day = r.randint(1, 28)
+        date = datetime.date(year, month, day)
+        hour = r.randint(0, 23)
+        minute = r.randint(0, 59)
+        second = r.randint(0, 59)
+        time = datetime.time(hour, minute, second)
+        timezone = r.randint(0, 24) - 12
+        if timezone == 0:
+            return "%sT%sZ" % (date.isoformat(), time.isoformat())
+        return "%sT%s%+03d:00" % (date.isoformat(), time.isoformat(), timezone)
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_random_datetime_rfc3339)
 
 class RandomIpv4AddressCommand(RandomText):
     def generate_ipv4_address(self):
