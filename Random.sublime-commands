@@ -1,8 +1,8 @@
 [
     { "caption": "Random:Int", "command": "random_int_window" },
     { "caption": "Random:Float", "command": "random_float_window" },
-    { "caption": "Random:Letters", "command": "random_letter" },
-    { "caption": "Random:Letters and numbers", "command": "random_letter_and_number" },
+    { "caption": "Random:Letters", "command": "random_letter_window" },
+    { "caption": "Random:Letters and numbers", "command": "random_letter_and_number_window" },
     { "caption": "Random:Date", "command": "random_date" },
     { "caption": "Random:DateTimeRFC3339", "command": "random_datetime_rfc3339" },
     { "caption": "Random:Time", "command": "random_time" },
