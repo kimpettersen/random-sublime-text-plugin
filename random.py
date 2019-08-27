@@ -346,6 +346,17 @@ class RandomCountryCommand(RandomText):
     def run(self, view, **kwargs):
         self.insert(view, self.generate_country)
 
+class RandomVatbeCommand(RandomText):
+    def vat_checker(self,num_part1):
+        return 97 - num_part1%97
+
+    def generate_vatbe(self):
+        output = r.randint(1000000, 99999999)
+        return str(str(output)+str(self.vat_checker(output)))
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_vatbe)
+
 """
 END Text commands
 """

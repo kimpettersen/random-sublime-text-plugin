@@ -34,6 +34,7 @@ Type *random* and you get the following choices:
 * Random:Hex Color - generates a random hex color formatted "#abc123"
 * Random:IPv4 Address - generates a random ipv4 ip address
 * Random:IPV6 Address - generates a random ivp6 ip address
+* Random:VAT BE - generates a random belgian VAT number (with last two digit check)
 
 Overridable Settings
 ====================
