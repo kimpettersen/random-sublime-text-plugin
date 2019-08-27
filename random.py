@@ -105,7 +105,7 @@ class RandomFloatWindowCommand(RandomWindow):
 class RandomListWindowCommand(RandomWindow):
     def run(self):
         self.text_command = 'random_list'
-        self.window.show_input_panel('Random List howmuch terms',self.default_list(), self.get_list, None, None)
+        self.window.show_input_panel('Random List terms',self.default_list(), self.get_list, None, None)
 
 """
 END Window commands
