@@ -23,6 +23,12 @@ class RandomWindow(sublime_plugin.WindowCommand):
         """
         return '1,100'
 
+    def default_list(self):
+        """
+        This should be persisted somehow
+        """
+        return 'A|B|C|D'
+
     def get_range(self, input_text):
         try:
             input_text = input_text.replace(' ', '')
@@ -37,6 +43,17 @@ class RandomWindow(sublime_plugin.WindowCommand):
         except Exception as e:
             logging.exception(e)
             sublime.error_message('Must be two comma separated integers')
+
+    def get_list(self, input_text):
+        try:
+            mylist = input_text
+            if ((len(mylist))==0) :
+                raise ValueError('Invalid format?')
+            self.insert({'mylist': mylist})
+
+        except Exception as e:
+            logging.exception(e)
+            sublime.error_message('Must be a "|"-separeted list')
 
     def insert(self, kwargs):
         view = self.window.active_view()
@@ -84,6 +101,11 @@ class RandomFloatWindowCommand(RandomWindow):
     def run(self):
         self.text_command = 'random_float'
         self.window.show_input_panel('Random float from-to',self.default_range(), self.get_range, None, None)
+
+class RandomListWindowCommand(RandomWindow):
+    def run(self):
+        self.text_command = 'random_list'
+        self.window.show_input_panel('Random List howmuch terms',self.default_list(), self.get_list, None, None)
 
 """
 END Window commands
@@ -139,6 +161,19 @@ class RandomLetterAndNumberCommand(RandomText):
 
     def run(self, view, **kwargs):
         self.insert(view, self.generate_letters_and_numbers)
+
+class RandomListCommand(RandomText):
+
+    def generate_from_list(self):
+        settings = get_settings()
+        separator=settings.get('randomList_separartor',"|")
+        choice_list = self.mylist.split(separator)
+        output = str(r.choice(choice_list))
+        return output
+
+    def run(self, view, **kwargs):
+        self.mylist = kwargs['mylist']
+        self.insert(view, self.generate_from_list)
 
 class RandomWordCommand(RandomText):
 

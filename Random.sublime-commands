@@ -1,6 +1,7 @@
 [
     { "caption": "Random:Int", "command": "random_int_window" },
     { "caption": "Random:Float", "command": "random_float_window" },
+    { "caption": "Random:List", "command": "random_list_window" },
     { "caption": "Random:Letters", "command": "random_letter" },
     { "caption": "Random:Letters and numbers", "command": "random_letter_and_number" },
     { "caption": "Random:Date", "command": "random_date" },
