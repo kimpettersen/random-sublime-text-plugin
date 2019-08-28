@@ -19,6 +19,7 @@ Type *random* and you get the following choices:
 
 * Random:Int - requires a range from a-b separated with a: *-*. Default: 1-100
 * Random:Float - requires a range from a-b separated with a: *-*. Default: 1-100
+* Random:List - requires a list separated with a: *|*. Default: A|B|C|D
 * Random:Letters - generatates a random string of lower and upper -case letters with a length between 3 and 17
 * Random:Letters and numbers - generatates a random string of lower and upper -case letters and numbers with a length between 3 and 17
 * Random:Country - picks a random country
@@ -33,6 +34,7 @@ Type *random* and you get the following choices:
 * Random:Hex Color - generates a random hex color formatted "#abc123"
 * Random:IPv4 Address - generates a random ipv4 ip address
 * Random:IPV6 Address - generates a random ivp6 ip address
+* Random:VAT BE - generates a random belgian VAT number (with last two digit check)
 
 Overridable Settings
 ====================
@@ -43,11 +45,14 @@ Overridable Settings
 
 * `max_year` and `min_year` defines a date range
 
+* randomList_separartor - Allows overriding default separator when choice from list 
+
 # Complete Settings Example
 
     {
         "random_email_top_level_domain_override": ["com", "net", "co.uk", "org", "edu"],
         "max_year": 2000,
-        "min_year": 1999
+        "min_year": 1999,
+        "randomList_separartor" : "|"
     }
 
