@@ -28,6 +28,7 @@ Type *random* and you get the following choices:
 * Random:First name - picks a random first name from the built-in datafile
 * Random:Last name - picks a random last name from the built-in datafile
 * Random:Full name - picks a random full name from the built-in datafiles
+* Random:Blast HardCheese nickname - picks a random MST3k "Space Mutiny" Dave Rider nickname from the built-in datafiles (nicknames taken from the [RealDaveRyder](https://twitter.com/RealDaveRyder) Twitter bot.)
 * Random:E-mail - picks a random E-mail address
 * Random:Url - generates a URL using random words from /usr/share/dict/words
 * Random:Hex Color - generates a random hex color formatted "#abc123"

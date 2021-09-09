@@ -71,6 +71,19 @@ class RandomText(sublime_plugin.TextCommand):
 
     def get_countries(self):
         return self.get_data_file('countries.txt')
+        
+    def get_blast_first_names(self):
+        return self.get_data_file('blast_first_names.txt')
+        
+    def get_blast_second_names(self):
+        return self.get_data_file('blast_second_names.txt')
+        
+    def get_blast_third_names(self):
+        return self.get_data_file('blast_third_names.txt')
+
+    
+        
+    
 """
 Window commands
 """
@@ -195,6 +208,20 @@ class RandomFullNameCommand(RandomText):
 
     def run(self, view, **kwargs):
         self.insert(view, self.generate_full_name)
+
+
+class RandomBlastNameCommand(RandomText):
+
+    def generate_full_name(self):
+        first_names = self.get_blast_first_names()
+        second_names = self.get_blast_second_names()
+        third_names = self.get_blast_third_names()
+        return '%s %s%s%s' % (r.choice(first_names), r.choice(['', 'Mc']), r.choice(second_names),
+                            r.choice(third_names))
+
+    def run(self, view, **kwargs):
+        self.insert(view, self.generate_full_name)
+
 
 class RandomUrlCommand(RandomText):
 
