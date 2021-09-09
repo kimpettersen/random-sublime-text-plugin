@@ -216,7 +216,7 @@ class RandomBlastNameCommand(RandomText):
         first_names = self.get_blast_first_names()
         second_names = self.get_blast_second_names()
         third_names = self.get_blast_third_names()
-        return '%s %s%s' % (r.choice(first_names), r.choice(second_names),
+        return '%s %s%s%s' % (r.choice(first_names), r.choice(['', 'Mc']), r.choice(second_names),
                             r.choice(third_names))
 
     def run(self, view, **kwargs):
